@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import khemathatcom.calendar.R;
 
@@ -52,12 +54,21 @@ public class calendarFragment extends Fragment {
             @Override
             public void onDayClick(EventDay eventDay) {
                 Date selectedDate = calendarView.getFirstSelectedDate().getTime();
+                int selectedDate2 = eventDay.getCalendar().get(Calendar.DAY_OF_MONTH);
+                int selectedDate3 = eventDay.getCalendar().get(Calendar.MONTH);
+                int selectedDate4 = eventDay.getCalendar().get(Calendar.YEAR);
 
                 Log.d("date", String.valueOf(selectedDate));
+                Log.d("date", String.valueOf(selectedDate2));
+                Log.d("date", String.valueOf(selectedDate3));
+                Log.d("date", String.valueOf(selectedDate4));
+
+                calendar.setTime(selectedDate);
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.contentContainer,timeFragment.newInstance(selectedDate.toString()))
+                        .replace(R.id.contentContainer,timeFragment.newInstance(selectedDate2,
+                                selectedDate3,selectedDate4))
                         .addToBackStack(null)
                         .commit();
 

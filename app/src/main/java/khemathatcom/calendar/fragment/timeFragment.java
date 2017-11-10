@@ -7,7 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 import khemathatcom.calendar.R;
 
@@ -18,15 +21,21 @@ import khemathatcom.calendar.R;
 public class timeFragment extends Fragment {
 
     TextView dateView;
+    Button time10_00,time10_15,time10_30,time10_45;
+    int date,month,year;
+    String time;
+
 
     public timeFragment() {
         super();
     }
 
-    public static timeFragment newInstance(String strName) {
+    public static timeFragment newInstance(int strName,int strName2,int strName3) {
         timeFragment fragment = new timeFragment();
         Bundle args = new Bundle();
-        args.putString("Date",strName);
+        args.putInt("Date",strName);
+        args.putInt("Month",strName2);
+        args.putInt("Year",strName3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,12 +50,17 @@ public class timeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_time, container, false);
 
+
+
+
         initInstances(rootView);
 
-        String date = getArguments().getString("Date");
-        Log.d("Date",date);
+         date = getArguments().getInt("Date");
+         month = getArguments().getInt("Month");
+         year = getArguments().getInt("Year");
+        Log.d("Date", String.valueOf(date));
 
-        dateView.setText(date);
+        dateView.setText(String.valueOf(date));
 
 
         return rootView;
@@ -55,6 +69,61 @@ public class timeFragment extends Fragment {
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
         dateView = rootView.findViewById(R.id.date);
+        time10_00 = rootView.findViewById(R.id.btnTime10_00);
+        time10_15 = rootView.findViewById(R.id.btnTime10_15);
+        time10_30 = rootView.findViewById(R.id.btnTime10_30);
+        time10_45 = rootView.findViewById(R.id.btnTime10_45);
+        final Calendar calendar = Calendar.getInstance();
+
+
+        time10_00.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calendar.set(year,month,date,10,00);
+
+                Log.d("Date", String.valueOf(calendar.getTime()));
+
+
+            }
+        });
+
+        time10_15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calendar.set(year,month,date,10,15);
+
+                Log.d("Date", String.valueOf(calendar.getTime()));
+
+
+            }
+        });
+
+        time10_30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calendar.set(year,month,date,10,30);
+
+                Log.d("Date", String.valueOf(calendar.getTime()));
+
+
+            }
+        });
+
+        time10_45.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                calendar.set(year,month,date,10,45);
+
+                Log.d("Date", String.valueOf(calendar.getTime()));
+
+
+            }
+        });
+
     }
 
     @Override
