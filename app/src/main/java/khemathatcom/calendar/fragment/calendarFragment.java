@@ -54,6 +54,8 @@ public class calendarFragment extends Fragment {
             @Override
             public void onDayClick(EventDay eventDay) {
                 Date selectedDate = calendarView.getFirstSelectedDate().getTime();
+
+                //Get Day-Month-Year
                 int selectedDate2 = eventDay.getCalendar().get(Calendar.DAY_OF_MONTH);
                 int selectedDate3 = eventDay.getCalendar().get(Calendar.MONTH);
                 int selectedDate4 = eventDay.getCalendar().get(Calendar.YEAR);

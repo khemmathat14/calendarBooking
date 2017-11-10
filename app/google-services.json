@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "615031020126",
+    "firebase_url": "https://bookingcalenadar.firebaseio.com",
+    "project_id": "bookingcalenadar",
+    "storage_bucket": "bookingcalenadar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615031020126:android:8a2d8b1c7397135d",
+        "android_client_info": {
+          "package_name": "khemathatcom.calendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615031020126-kfljagjlrnrmna9tqo7g9us5vjaik2rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBVC0CH9Zin5mzrzPAg65FjGMhKjMzJz8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

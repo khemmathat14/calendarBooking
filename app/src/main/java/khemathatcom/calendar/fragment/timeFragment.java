@@ -1,5 +1,6 @@
 package khemathatcom.calendar.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Calendar;
+import java.util.Date;
 
 import khemathatcom.calendar.R;
 
@@ -31,6 +36,7 @@ public class timeFragment extends Fragment implements View.OnClickListener {
     Button time16_00,time16_15,time16_30,time16_45;
     int date,month,year;
     String time;
+    DatabaseReference mRootRef;
 
 
     public timeFragment() {
@@ -68,10 +74,12 @@ public class timeFragment extends Fragment implements View.OnClickListener {
          year = getArguments().getInt("Year");
         Log.d("Date", String.valueOf(date));
 
+        //Set textViewTop
         dateView.setText(String.valueOf(date));
 
 
         Log.d("Date2", String.valueOf(calendar.getTime()));
+
 
         return rootView;
     }
@@ -80,6 +88,9 @@ public class timeFragment extends Fragment implements View.OnClickListener {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
+
+        mRootRef = FirebaseDatabase.getInstance().getReference();
+
         dateView = rootView.findViewById(R.id.date);
         time9_00 = rootView.findViewById(R.id.btnTime9_00);
         time9_15 = rootView.findViewById(R.id.btnTime9_15);
@@ -154,12 +165,6 @@ public class timeFragment extends Fragment implements View.OnClickListener {
     public void onStart() {
         super.onStart();
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("Date3", String.valueOf(calendar.getTime()));
     }
 
 
@@ -293,12 +298,26 @@ public class timeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void upToFirebase() {
+
+        //Time
         time = String.valueOf(calendar.getTime());
         Log.d("Date1", String.valueOf(time));
 
-        
+
+
+        //Up Data To Firebase here
+        mRootRef.child("event").push().setValue(time);
 
     }
+
+    //TODO: เพิ่มข้อมูลที่ใช้ตอนจอง เพิ่มdialog ยืนยันว่าจะจองเวลานี้
+    //ให้ textView แสดงเวลามีกด calcel และ confirm
+
+
+
+
+
+
 
 
 }
